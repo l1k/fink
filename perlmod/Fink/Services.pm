@@ -2183,6 +2183,7 @@ sub _expand_help {
 			split /(?<!%),/, $3;
 		$1 . &{$exp{$2}}(@args);
 	"ge;
+# " <-- preceding s using " as delim confuses emacs syntax-highlight
 	$helpformat =~ s/%%/%/g;
 	return $helpformat;
 }
