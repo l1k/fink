@@ -713,6 +713,7 @@ as part of the Xcode tools.
 
 	my @SDKDIRS;
 	# possible SDKs for known OS X versions and supported Xcodes.
+    my $osxversion = Fink::Services::get_kernel_vers();
 	if ($osxversion == 9) {
 		@SDKDIRS= qw(
 			MacOSX10.3.9.sdk
