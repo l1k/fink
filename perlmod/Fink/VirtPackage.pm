@@ -679,7 +679,6 @@ END
         } else {
             chomp(my $result=`pkgutil --pkg-info com.apple.pkg.DeveloperToolsCLI 2>&1`);
         }
-	    chomp(my $result=`pkgutil --pkg-info com.apple.pkg.DeveloperToolsCLI 2>&1`);
 		if (not $?) {
 			# didn't fail
 			# iterate over output lines and grab version
@@ -713,7 +712,6 @@ as part of the Xcode tools.
 =cut
 
 	my @SDKDIRS;
-	my $osxversion=Fink::Services::get_kernel_vers();
 	# possible SDKs for known OS X versions and supported Xcodes.
 	if ($osxversion == 9) {
 		@SDKDIRS= qw(
