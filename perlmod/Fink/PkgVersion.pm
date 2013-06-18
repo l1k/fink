@@ -4839,7 +4839,7 @@ if [ "\$compiler" = "cc" -o "\$compiler" = "gcc" ]; then
    compiler="clang"
 fi
 if [ "\$compiler" = "c++" -o "\$compiler" = "g++" ]; then
-  compiler="clang++"
+  compiler="clang++ -stdlib=libstdc++"
 fi
 exec \$compiler "\$@"
 EOF
