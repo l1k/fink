@@ -402,12 +402,12 @@ directories exist.
 					$ver = $dir;
 					$java_test_dir = "$javadir/$dir/Commands";
 					$java_cmd_dir = "$dir/Commands";
-				} else { # 1.7 and later
-					($dir) = ($javadir =~ m|jdk(\d.*)_|) ;
+				} else { # 1.7 and later, including older formats
+					($dir) = ($javadir =~ m|(\d+\.\d+\.\d+).*jdk|) ;
 					$java_test_dir = "$javadir/bin";
-					($java_cmd_dir) = ($java_test_dir =~ /(jdk.*jdk.*)/);
-					($java_inc_dir) = ($javadir =~ /(jdk.*jdk.*)/);
-					$java_inc_dir .= '/include';
+					($java_cmd_dir) = ($java_test_dir =~ m|/.*/((.*)?jdk/.*/bin)|);
+					$java_inc_dir = $java_cmd_dir;			
+					$java_inc_dir =~ s/bin/include/;
 				}
 				# chop the version down to major/minor without dots
 				$ver =~ s/[^\d]+//g;
