@@ -661,6 +661,7 @@ from Apple at:
 (free registration required).  
 END
 	$hash->{compilescript} = &gen_compile_script($hash);
+    	my $osxversion = Fink::Services::get_kernel_vers();
     # for Xcode 4.2.1 and earlier, this will be the same as 
     # the version of xcode.app
     if ( defined ($xcode_app_version) && Fink::Services::version_cmp ("$xcode_app_version",'<<','4.3') ) {
@@ -673,7 +674,6 @@ END
     #	<Xcode major>.<Xcode minor>.<Xcode micro>.0.1.<build_date>
     # e.g. 4.3.0.0.1.1249367152 for the "late March 2012" CLI tools.
     # We'll take the whole thing as the version.
-    	my $osxversion = Fink::Services::get_kernel_vers();
         my $receipt_to_check;
         if ($osxversion >= 13) {
         	chomp($receipt_to_check = "com.apple.pkg.CLTools_Executables");
@@ -715,7 +715,6 @@ as part of the Xcode tools.
 
 	my @SDKDIRS;
 	# possible SDKs for known OS X versions and supported Xcodes.
-    my $osxversion = Fink::Services::get_kernel_vers();
 	if ($osxversion == 9) {
 		@SDKDIRS= qw(
 			MacOSX10.3.9.sdk
