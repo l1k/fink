@@ -1326,7 +1326,6 @@ sub activate_infotest {
 	}
 
 	delete $self->{_source_suffixes};
-
 }
 
 ### add a splitoff package
@@ -3738,7 +3737,7 @@ sub phase_compile {
 	$self->run_script($self->get_script("CompileScript"), "compiling", 1, 1);
 
 	if (Fink::Config::get_option("tests")) {
-		my $result = $self->run_script($self->get_script("TestScript"), "testing", 0, 1, 1);
+		my $result = $self->run_script($self->get_script("TestScript"), "testing", 1, 1, 1);
 
 		if ($result == 1) {
 			warn "phase test: warning\n";
