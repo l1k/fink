@@ -643,13 +643,9 @@ my $perlexe  = "/usr/bin/perl"; #default
 # override defaults
 if ($distribution eq "10.6") { 
 	$perlexe = "/usr/bin/arch -arch $arch /usr/bin/perl5.10.0";
-}
-
-if (($distribution eq "10.7") or ($distribution eq "10.8")) { 
+} elsif (($distribution eq "10.7") or ($distribution eq "10.8")) {
 	$perlexe = "/usr/bin/arch -arch $arch /usr/bin/perl5.12";
-}
-
-if ($distribution gt "10.8") {
+} elsif ($distribution gt "10.8") {
         $perlexe = "/usr/bin/arch -arch $arch /usr/bin/perl5.16";
 }
 
