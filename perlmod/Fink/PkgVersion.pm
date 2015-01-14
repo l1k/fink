@@ -5191,7 +5191,9 @@ sub get_env {
 		# use path-prefix-* to give magic to 'gcc' and related commands
 		# Clang isn't the default compiler for Xcode 4.x, so wrapping mandatory on 10.7 and 10.8/Xcode 4.x .
 		# Includes unused argument error suppression for clang-5's C compiler for 10.8 and 10.9 .
-		$script_env{'PATH'} = ensure_clang_prefix() . ':' . $script_env{'PATH'}; 
+		if  ( $distro ge version->parse ("v10.7") ) {
+			$script_env{'PATH'} = ensure_clang_prefix() . ':' . $script_env{'PATH'};
+		}
 		if  ( $distro ge version->parse ("v10.9") ) {
 			# Use -stdlib=libc++ for c++/g++/clang++ on 10.9 and later.
 			# Also includes unused argument error suppression for clang-5's C++ compiler for 10.9.
