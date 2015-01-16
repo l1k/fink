@@ -407,7 +407,9 @@ directories exist.
 	# add hardcoded patterns for Javas which are known to be available 
 	# on supported OS X so that their system-* packages will show up as
 	# potentially installable.
-	my @jdktest = ( split (/\n/, `/usr/libexec/java_home -V 2>&1`),
+	my @jdktest = ( ( -x '/usr/libexec/java_home' ) ?
+					split (/\n/, `/usr/libexec/java_home -V 2>&1`) :
+					'1.4.2_AB-bCD-EFG.H, ' . Fink::FinkVersion::get_arch() . ':    "Java SE 6" ' . `/usr/bin/strings /usr/bin/java | /usr/bin/grep /Home\$`,
 					'1.4.2_AB-bCD-EFG.H, x86_64:	"Java SE 6"	/System/Library/Java/JavaVirtualMachines/1.4.2.jdk/Contents/Home',
 					'1.5.0_AB-bCD-EFG.H, x86_64:	"Java SE 6"	/System/Library/Java/JavaVirtualMachines/1.5.0.jdk/Contents/Home',
 					'1.6.0_AB-bCD-EFG.H, x86_64:	"Java SE 6"	/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home',
@@ -753,6 +755,7 @@ END
 	$hash->{compilescript} = &gen_compile_script($hash);
 
 	chomp(my $xcodepath=`xcode-select -print-path 2>/dev/null`);
+	$xcodepath='/Developer' if !$xcodepath;
 	# Xcode 4.3+ is relocatable
 	my $result=`defaults read $xcodepath/../version CFBundleShortVersionString 2>&1`;
 	my $xcode_app_version; # to use in the next entry

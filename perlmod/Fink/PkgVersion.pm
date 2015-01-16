@@ -5208,7 +5208,11 @@ sub get_env {
 			my ($JAVA_HOME, $subtype, $dir, $versions_dir, @dirs);
 			if ($subtype = $self->get_subtype('java')) {
 				$subtype = '' if ($subtype eq 'java');
-				chomp ($JAVA_HOME=`/usr/libexec/java_home`);
+				if (-x '/usr/libexec/java_home') {
+					chomp ($JAVA_HOME=`/usr/libexec/java_home`);
+				} else {
+					chomp ($JAVA_HOME=`/usr/bin/strings /usr/bin/java | /usr/bin/grep /Home\$`);
+				}
 			}
 			$script_env{'JAVA_HOME'} = $JAVA_HOME unless $self->has_param('SetJAVA_HOME');
 			$script_env{'PATH'}      = $JAVA_HOME . '/bin:' . $script_env{'PATH'} unless $self->has_param('SetPATH');
