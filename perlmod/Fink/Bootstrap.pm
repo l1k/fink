@@ -177,19 +177,18 @@ GCC_MSG
 			"for current versions of fink.  Please use fink 0.24.7 or earlier.\n");
 		$distribution = "10.2"; # or 10.2-gcc3.3, but it doesn't matter as we refuse running anyway
 	} elsif ($host =~ /^(powerpc|i386)-apple-darwin7\./) {
-		&print_breaking("This system no longer supported " .
+		&print_breaking("This system is no longer supported " .
 			"for current versions of fink.  Please use fink 0.28.5 or earlier.\n");
 		$distribution = "10.3";
 	} elsif ($host =~ /^(powerpc|i386)-apple-darwin8\./) {
-		&print_breaking("This system no longer supported " .
-			"for current versions of fink.  Please use fink 0.30.2 or earlier.\n");
+		&print_breaking("This system is supported and tested.");
 		$distribution = "10.4";
 	} elsif ($host =~ /^(powerpc|i386)-apple-darwin9\./) {
-		&print_breaking("This system no longer supported " .
+		&print_breaking("This system is no longer supported " .
 			"for current versions of fink.  Please use fink 0.34.10 or earlier.\n");
 		$distribution = "10.5";
 	} elsif ($host =~ /^i386-apple-darwin10\./) {
-		&print_breaking("This system no longer supported " .
+		&print_breaking("This system is no longer supported " .
 			"for current versions of fink.  Please use fink 0.34.10 or earlier.\n");
 		$distribution = "10.6";
 	} elsif ($host =~ /^i386-apple-darwin11\.[0-4]\.[0-2]/) {
