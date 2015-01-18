@@ -5144,19 +5144,8 @@ sub get_env {
 			}
 		}
 		if (defined $s) {
-			# %-expand if we have anything at all
-			$s = &expand_percent($s, $expand, $self->get_info_filename." \"set$varname\" or \%Fink::PkgVersion::get_env::defaults");
-		}
-        # user-defined environment variables may override a package-specific or fink-default value
-		if (defined $ENV{$varname}) {
-			if ((defined $s) && ($s ne $ENV{$varname})) {
-			    print_breaking_stderr("WARNING: Using environment variable " . $varname . "=\"" . $ENV{$varname} . "\" for the build process even though the package or the fink defaults provide the value \"" . $s . "\".\n");
-			}
-		   	$s=$ENV{$varname};
-		}
-		# if we have anything, store it
-		if (defined $s) {
-			$script_env{$varname}=$s;
+			# %-expand and store if we have anything at all
+			$script_env{$varname} = &expand_percent($s, $expand, $self->get_info_filename." \"set$varname\" or \%Fink::PkgVersion::get_env::defaults");
 		} else {
 			# otherwise do not set
 			delete $script_env{$varname};
